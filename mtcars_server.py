@@ -63,11 +63,11 @@ def get_mtcars_server_functions(input, output, session):
         # Cylinders is a list of checkboxes (a list of possible values)
         show_cyl_list = []
         if input.MTCARS_v4():
-            show_cyl_list.append("4-Cylinder")
+            show_cyl_list.append("4")
         if input.MTCARS_v6():
-            show_cyl_list.append("6-Cylinder")
+            show_cyl_list.append("6")
         if input.MTCARS_v8():
-            show_cyl_list.append("8-Cylinder")
+            show_cyl_list.append("8")
         show_cyl_list = show_cyl_list or ["4", "6", "8"]
         cyl_filter = df["cyl"].isin(show_cyl_list)
         df = df[cyl_filter]
