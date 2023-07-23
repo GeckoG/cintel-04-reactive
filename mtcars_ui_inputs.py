@@ -21,9 +21,9 @@ def get_mtcars_inputs():
             value=[10, 35],
         ),
         ui.input_numeric("MTCARS_MAX_HP", "Max Horsepower:", value=200.0),
-        ui.input_checkbox("MTCARS_v4", "4-Cylinder", False),
-        ui.input_checkbox("MTCARS_v6", "6-Cylinder", False),
-        ui.input_checkbox("MTCARS_v8", "8-Cylinder", False),
+        ui.input_checkbox("MTCARS_v4", "4-Cylinder", True),
+        ui.input_checkbox("MTCARS_v6", "6-Cylinder", True),
+        ui.input_checkbox("MTCARS_v8", "8-Cylinder", True),
         ui.tags.hr(),
         ui.tags.section(
             ui.h3("MT Cars Table"),

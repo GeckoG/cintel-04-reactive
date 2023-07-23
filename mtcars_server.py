@@ -54,7 +54,7 @@ def get_mtcars_server_functions(input, output, session):
         You must be familiar with the dataset to know the column names.
         """
 
-        filtered_df = df[(df["mpg"] >= input_min) & (df["mpg"] <= input_max)]
+        df = df[(df["mpg"] >= input_min) & (df["mpg"] <= input_max)]
 
         # Horse power is a max number
         hp_filter = df["hp"] <= input.MTCARS_MAX_HP()
@@ -72,7 +72,7 @@ def get_mtcars_server_functions(input, output, session):
         cyl_filter = df["cyl"].isin(show_cyl_list)
         df = df[cyl_filter]
 
-
+        filtered_df = df
         # Set the reactive value
         reactive_df.set(filtered_df)
 
