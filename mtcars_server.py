@@ -32,7 +32,13 @@ def get_mtcars_server_functions(input, output, session):
     reactive_df = reactive.Value()
 
     @reactive.Effect
-    @reactive.event(input.MTCARS_MPG_RANGE)
+    @reactive.event(
+        input.MTCARS_MPG_RANGE,
+        input.MTCARS_MAX_HP,
+        input.MTCARS_v4,
+        input.MTCARS_v6,
+        input.MTCARS_v8
+        )
     def _():
         df = original_df.copy()
 
@@ -49,6 +55,23 @@ def get_mtcars_server_functions(input, output, session):
         """
 
         filtered_df = df[(df["mpg"] >= input_min) & (df["mpg"] <= input_max)]
+
+        # Horse power is a max number
+        hp_filter = df["hp"] <= input.MTCARS_MAX_HP()
+        df = df[hp_filter]
+
+        # Cylinders is a list of checkboxes (a list of possible values)
+        show_cyl_list = []
+        if input.MTCARS_v4():
+            show_cyl_list.append("4-Cylinder")
+        if input.MTCARS_v6():
+            show_cyl_list.append("6-Cylinder")
+        if input.MTCARS_v8():
+            show_cyl_list.append("8-Cylinder")
+        show_cyl_list = show_cyl_list or ["4", "6", "8"]
+        cyl_filter = df["cyl"].isin(show_cyl_list)
+        df = df[cyl_filter]
+
 
         # Set the reactive value
         reactive_df.set(filtered_df)

@@ -21,4 +21,4 @@ def get_penguins_outputs():
             ui.output_table("penguins_filtered_table"),
             ui.tags.hr(),
         ),
-    )
+    ) 
